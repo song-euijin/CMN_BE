@@ -6,11 +6,6 @@
 	</resultMap>
 
 	<select id="selectCodeList" resultMap="code" >
-		SELECT
-		*
-		FROM
-	    TB_COMMON_CODE
+		select * from tb_common_code where ${searchKey} like '%${searchValue}%' order by common_code
 	</select>
-
-
 </mapper>	 

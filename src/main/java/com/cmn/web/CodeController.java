@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,8 +18,14 @@ public class CodeController {
 	private CodeService codeService;
 
 	@RequestMapping(value = "/CodeList.do") 
-	public List<CodeVO> codeList(CodeVO codeVo, ModelMap model) {
+	public List<CodeVO> codeList(CodeVO codeVo, ModelMap model, @RequestParam String searchKey, @RequestParam String searchValue) {
 		System.out.println("------- code 출력 -------------");
+		System.out.println(searchKey);
+		System.out.println(searchValue);
+		
+		codeVo.setSearchKey(searchKey);
+		codeVo.setSearchValue(searchValue);
+		
 		List<CodeVO> codeList = codeService.selectCodeList(codeVo);
 		model.addAttribute("resultList", codeList); 
 		ModelAndView mav = new ModelAndView("codeList"); 

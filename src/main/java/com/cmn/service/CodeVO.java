@@ -8,7 +8,23 @@ public class CodeVO {
 	private String CODE_REG_DATE;
 	private String CODE_MODIFY_DATE;
 	
+	private String searchKey;
+	private String searchValue;
 	
+	
+	public String getSearchKey() {
+		return searchKey;
+	}
+	public void setSearchKey(String searchKey) {
+		this.searchKey = searchKey;
+	}
+	
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
 	public String getCOMMON_CODE() {
 		return COMMON_CODE;
 	}
