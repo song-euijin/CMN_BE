@@ -5,5 +5,4 @@
     
 <sqlMapConfig>
 	<sqlMap resource="sqlmap/mappers/CrmMapper.xml"/>
-	<sqlMap resource="sqlmap/mappers/CodeMapper.xml"/>
 </sqlMapConfig>
