@@ -28,7 +28,7 @@ public class CmnController {
 	@RequestMapping(value = "/CMN/userList.do")
 	public List<UserVO> getUserList() throws Exception {
 		List<UserVO> userList = cmnService.getUserList();
-		log.info("userList   :   {}", userList);
+		log.info("userList!!!!!!!!!   :   {}", userList);
 		
 		return userList;
 	}
