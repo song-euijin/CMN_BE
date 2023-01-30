@@ -5,6 +5,7 @@
     <typeAliases>
 		<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 		<typeAlias alias="crmVO" type="com.erp.service.CrmVO"/>
+		<typeAlias alias="codeVO" type="com.cmn.service.CodeVO"/>
     </typeAliases>
 </configuration>
 
