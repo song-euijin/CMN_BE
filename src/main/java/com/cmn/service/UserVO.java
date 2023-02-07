@@ -17,6 +17,7 @@ public class UserVO {
 	private String userAddrDetail;
 	private String targetId;
 	private String userName;
+	private String userImg;
 	
 	public String getUserId() {
 		return userId;
@@ -114,6 +115,12 @@ public class UserVO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
+	public String getUserImg() {
+		return userImg;
+	}
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
+	}
 	
 	@Override
 	public String toString() {
@@ -122,7 +129,7 @@ public class UserVO {
 				+ ", userPosition=" + userPosition + ", userAuthority=" + userAuthority + ", userStatus=" + userStatus
 				+ ", userPhone=" + userPhone + ", userLandLineNumber=" + userLandLineNumber + ", userZipCode="
 				+ userZipCode + ", userAddr=" + userAddr + ", userAddrDetail=" + userAddrDetail + ", targetId="
-				+ targetId + ", userName=" + userName + "]";
+				+ targetId + ", userName=" + userName + ", userImg=" + userImg + "]";
 	}
-
+	
 }

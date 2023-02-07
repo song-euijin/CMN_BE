@@ -34,10 +34,10 @@ public interface CmnMapper {
 	// 사용자 등록 처리
 	int userReg(UserVO user);
 	
-	// 사용자 수정 페이지 조회
+	// 사용자 정보 페이지 조회
 	List<UserVO> getUserInfo(String userId);
 	
-	// 수정을위한 코드정보 조회
+	// 사용자 코드 정보 조회
 	List<UserVO> getTargetCodeInfo(String userId);
 	
 	// 사용자 수정 처리
