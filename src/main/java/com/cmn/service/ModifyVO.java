@@ -2,6 +2,7 @@ package com.cmn.service;
 
 public class ModifyVO {
 	private String userId;
+	private String userImg;
 	private String userDept;
 	private String userRank;
 	private String userPosition;
@@ -13,6 +14,12 @@ public class ModifyVO {
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public String getUserImg() {
+		return userImg;
+	}
+	public void setUserImg(String userImg) {
+		this.userImg = userImg;
 	}
 	public String getUserDept() {
 		return userDept;
@@ -47,8 +54,9 @@ public class ModifyVO {
 	
 	@Override
 	public String toString() {
-		return "ModifyVO [userId=" + userId + ", userDept=" + userDept + ", userRank=" + userRank + ", userPosition="
-				+ userPosition + ", userAuthority=" + userAuthority + ", userStatus=" + userStatus + "]";
+		return "ModifyVO [userId=" + userId + ", userImg=" + userImg + ", userDept=" + userDept + ", userRank="
+				+ userRank + ", userPosition=" + userPosition + ", userAuthority=" + userAuthority + ", userStatus="
+				+ userStatus + "]";
 	}
-	
+
 }

@@ -6,7 +6,7 @@ import java.util.List;
 public interface CmnService {
 	
 	// 사용자 목록 조회
-	List<UserVO> getUserList();
+	List<UserVO> getUserList() throws Exception;
 	
 	// 사용자 검색
 	List<UserVO> getSearchUserList(String searchKey, String searchValue);
@@ -23,12 +23,12 @@ public interface CmnService {
 	int idDupleCheck(String userId);
 	
 	// 사용자 등록 처리
-	int userReg(UserVO user) throws NoSuchAlgorithmException;
+	int userReg(UserVO user) throws NoSuchAlgorithmException, Exception;
 	
-	// 사용자 수정 페이지 조회
-	List<UserVO> getUserInfo(String userId);
+	// 사용자 정보 페이지 조회
+	List<UserVO> getUserInfo(String userId) throws Exception;
 	
-	// 수정을위한 코드정보 조회
+	// 사용자 코드 정보 조회
 	List<UserVO> getTargetCodeInfo(String userId);
 	
 	// 사용자 수정 처리

@@ -18,10 +18,12 @@
 		<result property="userAddr"				column="USER_ADDR"/>
 		<result property="userAddrDetail"		column="USER_ADDR_DETAIL"/>
 		<result property="userName"				column="USER_NAME"/>
+		<result property="userImg"				column="USER_IMG"/>
 	</resultMap>
 	
 	<resultMap id="ModifyResultMap" type="com.cmn.service.ModifyVO">
 		<result property="userId" 				column="USER_ID"/>
+		<result property="userImg" 				column="USER_IMG"/>
 		<result property="userDept" 			column="FK_COMMON_CODE_DEPT"/>
 		<result property="userRank" 			column="FK_COMMON_CODE_RANK"/>
 		<result property="userPosition" 		column="FK_COMMON_CODE_POSITION"/>
@@ -47,6 +49,7 @@
 		SELECT
 			u.USER_ID,
 			u.USER_NAME,
+			u.USER_PHONE,
 			cd.CODE_NAME FK_COMMON_CODE_DEPT,
 			cr.CODE_NAME FK_COMMON_CODE_RANK,
 			cp.CODE_NAME FK_COMMON_CODE_POSITION,
@@ -72,6 +75,7 @@
 		SELECT
 			u.USER_ID,
 			u.USER_NAME,
+			u.USER_PHONE,
 			cd.CODE_NAME FK_COMMON_CODE_DEPT,
 			cr.CODE_NAME FK_COMMON_CODE_RANK,
 			cp.CODE_NAME FK_COMMON_CODE_POSITION,
@@ -173,6 +177,7 @@
 		    USER_FIRST_NAME,
 		    USER_LAST_NAME,
 		    USER_NAME,
+		    USER_IMG,
 		    FK_COMMON_CODE_DEPT,
 		    FK_COMMON_CODE_RANK,
 		    FK_COMMON_CODE_POSITION,
@@ -190,6 +195,7 @@
 		    #{userFirstName},
 		    #{userLastName},
 		    #{userFirstName} || #{userLastName},
+		    #{userImg},
 		    #{userDept},
 		    #{userRank},
 		    #{userPosition},
@@ -205,10 +211,11 @@
 	</insert>
 	
 	<select id="getUserInfo" resultMap="UserResultMap" >
-		-- 사용자 정보 조회
+		-- 사용자 정보 페이지 조회
 		SELECT
-			u.USER_ID,
 			u.USER_NAME,
+			u.USER_ID,
+			u.USER_IMG,
 			cd.CODE_NAME FK_COMMON_CODE_DEPT,
 			cr.CODE_NAME FK_COMMON_CODE_RANK,
 			cp.CODE_NAME FK_COMMON_CODE_POSITION,
@@ -234,7 +241,7 @@
 	</select>
 	
 	<select id="getTargetCodeInfo" resultMap="UserResultMap" >
-		-- 사용자 정보 조회
+		-- 사용자 코드 정보 조회
 		SELECT
 			USER_ID,
 			FK_COMMON_CODE_DEPT,
@@ -251,6 +258,7 @@
 		-- 사용자 수정
 		UPDATE TB_USER
 		SET 
+			USER_IMG = #{userImg},
 		    FK_COMMON_CODE_DEPT = #{userDept},
 		    FK_COMMON_CODE_RANK = #{userRank},
 		    FK_COMMON_CODE_POSITION = #{userPosition},

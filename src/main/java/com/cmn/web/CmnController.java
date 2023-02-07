@@ -136,7 +136,7 @@ public class CmnController {
 		return result;
 	}
 	
-	// 사용자 수정 페이지 조회
+	// 사용자 정보 페이지 조회
 	@RequestMapping(value = "/CMN/userInfo.do")
 	public List<UserVO> getUserInfo(@RequestParam("userId")String userId) throws Exception {
 		log.info("userId   :   {}", userId);
@@ -146,7 +146,7 @@ public class CmnController {
 		return targetInfo;
 	}
 	
-	// 수정을위한 코드정보 조회
+	// 사용자 코드 정보 조회
 	@RequestMapping(value = "/CMN/targetCodeInfo.do")
 	public List<UserVO> getTargetCodeInfo(@RequestParam("userId")String userId) throws Exception {
 		log.info("userId   :   {}", userId);
