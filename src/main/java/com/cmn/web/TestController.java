@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cmn.service.CmnService;
+import com.cmn.service.UserService;
 import com.cmn.service.CodeVO;
 import com.cmn.service.UserVO;
 
@@ -22,12 +22,12 @@ public class TestController {
 	private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
 	@Autowired
-	private CmnService cmnService;
+	private UserService userService;
 	
 	// 사용자 목록 조회
 	@RequestMapping(value = "/testList.do")
 	public String getUserList(Model model) throws Exception {
-		List<UserVO> userList = cmnService.getUserList();
+		List<UserVO> userList = userService.getUserList();
 		model.addAttribute("userList", userList);
 		log.info("userList   :   {}", userList);
 		
@@ -37,10 +37,10 @@ public class TestController {
 	// 사용자 등록 페이지 조회
 	@GetMapping(value = "/testReg.do")
 	public String getRegPage(Model model) throws Exception {
-		List<CodeVO> deptList = cmnService.getDeptList();
-		List<CodeVO> rankList = cmnService.getRankList();
-		List<CodeVO> positionList = cmnService.getPositionList();
-		List<CodeVO> authorityList = cmnService.getAuthorityList();
+		List<CodeVO> deptList = userService.getDeptList();
+		List<CodeVO> rankList = userService.getRankList();
+		List<CodeVO> positionList = userService.getPositionList();
+		List<CodeVO> authorityList = userService.getAuthorityList();
 		model.addAttribute("deptList", deptList);
 		model.addAttribute("rankList", rankList);
 		model.addAttribute("positionList", positionList);
@@ -57,7 +57,7 @@ public class TestController {
 	@PostMapping(value = "/testReg.do")
 	public String userReg(UserVO user) throws Exception {
 		log.info("user   :   {}", user);
-		cmnService.userReg(user);
+		userService.userReg(user);
 		
 		return "redirect:/testList.do";
 	}
@@ -66,15 +66,15 @@ public class TestController {
 	@GetMapping(value = "/testModify.do")
 	public String getModifyPage(@RequestParam("userId")String userId, Model model) throws Exception {
 		log.info("userId   :   {}", userId);
-		List<UserVO> targetInfo = cmnService.getUserInfo(userId);
+		List<UserVO> targetInfo = userService.getUserInfo(userId);
 		log.info("targetInfo   :   {}", targetInfo);
 		model.addAttribute("targetInfo", targetInfo);
 		
-		List<CodeVO> deptList = cmnService.getDeptList();
-		List<CodeVO> rankList = cmnService.getRankList();
-		List<CodeVO> positionList = cmnService.getPositionList();
-		List<CodeVO> authorityList = cmnService.getAuthorityList();
-		List<CodeVO> statusList = cmnService.getStatusList();
+		List<CodeVO> deptList = userService.getDeptList();
+		List<CodeVO> rankList = userService.getRankList();
+		List<CodeVO> positionList = userService.getPositionList();
+		List<CodeVO> authorityList = userService.getAuthorityList();
+		List<CodeVO> statusList = userService.getStatusList();
 		model.addAttribute("deptList", deptList);
 		model.addAttribute("rankList", rankList);
 		model.addAttribute("positionList", positionList);
@@ -102,7 +102,7 @@ public class TestController {
 	@PostMapping(value = "/testDelete.do")
 	public String userDelete(@RequestParam("userId")String userId) throws Exception {
 		log.info("delete_user   :   {}", userId);
-		cmnService.userDelete(userId);
+		userService.userDelete(userId);
 		
 		return "testList.do";
 	}
