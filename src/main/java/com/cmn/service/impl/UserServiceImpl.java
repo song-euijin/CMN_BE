@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.cmn.service.CmnService;
+import com.cmn.service.UserService;
 import com.cmn.service.CodeVO;
 import com.cmn.service.CompanyVO;
 import com.cmn.service.ModifyVO;
@@ -18,17 +18,17 @@ import com.common.AES256;
 import com.common.SHA256;
 
 @Service("CmnService")
-public class CmnServiceImpl implements CmnService {
+public class UserServiceImpl implements UserService {
 	
 	private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
 	@Resource(name = "CmnMapper")
-	private CmnMapper cmnMapper;
+	private UserMapper userMapper;
 	
 	// 사용자 목록 조회
 	@Override
 	public List<UserVO> getUserList() throws Exception {
-		List<UserVO> list = cmnMapper.getUserList();
+		List<UserVO> list = userMapper.getUserList();
 		AES256 aes256 = new AES256();
 		for(int i = 0 ; i<list.size() ; i++){
 			log.info("check  :  {}", list.get(i).getUserPhone());
@@ -40,50 +40,50 @@ public class CmnServiceImpl implements CmnService {
 	// 사용자 검색
 	@Override
 	public List<UserVO> getSearchUserList(String searchKey, String searchValue) {
-		return cmnMapper.getSearchUserList(searchKey, searchValue);
+		return userMapper.getSearchUserList(searchKey, searchValue);
 	}
 	
 	// 부서 목록 조회
 	@Override
 	public List<CodeVO> getDeptList() {
-		return cmnMapper.getDeptList();
+		return userMapper.getDeptList();
 	}
 
 	// 직급 목록 조회
 	@Override
 	public List<CodeVO> getRankList() {
-		return cmnMapper.getRankList();
+		return userMapper.getRankList();
 	}
 	
 	// 직책 목록 조회
 	@Override
 	public List<CodeVO> getPositionList() {
-		return cmnMapper.getPositionList();
+		return userMapper.getPositionList();
 	}
 	
 	// 권한 목록 조회
 	@Override
 	public List<CodeVO> getAuthorityList() {
-		return cmnMapper.getAuthorityList();
+		return userMapper.getAuthorityList();
 	}
 	
 	// 상태 목록 조회
 	@Override
 	public List<CodeVO> getStatusList() {
-		return cmnMapper.getStatusList();
+		return userMapper.getStatusList();
 	}
 	
 	// 회사 정보 조회
 	@Override
 	public List<CompanyVO> getCompanyInfo() {
-		return cmnMapper.getCompanyInfo();
+		return userMapper.getCompanyInfo();
 	}
 	
 	// 아이디 중복확인
 	@Override
 	public int idDupleCheck(String userId) {
 		log.info("dupleCheck   :   {}", userId);
-		return cmnMapper.idDupleCheck(userId);
+		return userMapper.idDupleCheck(userId);
 	}
 	
 	// 사용자 등록 처리
@@ -94,14 +94,14 @@ public class CmnServiceImpl implements CmnService {
 		AES256 aes256 = new AES256();
 		user.setUserPw(sha256.encrypt(user.getUserPw()));
 		user.setUserPhone(aes256.encrypt(user.getUserPhone()));
-		return cmnMapper.userReg(user);
+		return userMapper.userReg(user);
 	}
 	
 	// 사용자 정보 페이지 조회
 	@Override
 	public List<UserVO> getUserInfo(String userId) throws Exception {
 		AES256 aes256 = new AES256();
-		List<UserVO> info =  cmnMapper.getUserInfo(userId);
+		List<UserVO> info =  userMapper.getUserInfo(userId);
 		for(int i = 0 ; i<info.size() ; i++){
 			info.get(i).setUserPhone(aes256.decrypt(info.get(i).getUserPhone()));
 		}
@@ -111,7 +111,7 @@ public class CmnServiceImpl implements CmnService {
 	// 사용자 코드 정보 조회
 	@Override
 	public List<UserVO> getTargetCodeInfo(String userId) {
-		return cmnMapper.getTargetCodeInfo(userId);
+		return userMapper.getTargetCodeInfo(userId);
 	}
 	
 	// 사용자 수정 처리
@@ -119,13 +119,13 @@ public class CmnServiceImpl implements CmnService {
 	public int userModify(ModifyVO user) {
 		log.info("modifyuser   :   {}", user);
 		
-		return cmnMapper.userModify(user);
+		return userMapper.userModify(user);
 	}
 	
 	// 사용자 삭제 처리
 	@Override
 	public int userDelete(String userId) {
 		log.info("deleteuser   :   {}", userId);
-		return cmnMapper.userDelete(userId);
+		return userMapper.userDelete(userId);
 	}
 }

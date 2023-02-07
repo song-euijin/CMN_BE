@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cmn.service.CmnService;
+import com.cmn.service.UserService;
 import com.cmn.service.CodeVO;
 import com.cmn.service.CompanyVO;
 import com.cmn.service.ModifyVO;
 import com.cmn.service.UserVO;
 
 @RestController
-public class CmnController {
+public class UserController {
 	
-	private static final Logger log = LoggerFactory.getLogger(CmnController.class);
+	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
-	private CmnService cmnService;
+	private UserService userService;
 	
 	// 사용자 목록 조회
 	@RequestMapping(value = "/CMN/userList.do")
 	public List<UserVO> getUserList() throws Exception {
-		List<UserVO> userList = cmnService.getUserList();
+		List<UserVO> userList = userService.getUserList();
 		log.info("userList   :   {}", userList);
 		
 		return userList;
@@ -55,7 +55,7 @@ public class CmnController {
 		log.info("Controller - searchKey   :   {}", searchKey);
 		log.info("Controller - searchValue   :   {}", searchValue);
 		
-		List<UserVO> searchList = cmnService.getSearchUserList(searchKey, searchValue);
+		List<UserVO> searchList = userService.getSearchUserList(searchKey, searchValue);
 		log.info("Controller - searchList   :   {}", searchList);
 		
 		return searchList;
@@ -64,7 +64,7 @@ public class CmnController {
 	// 사용자 부서 조회
 	@RequestMapping(value = "/CMN/deptList.do")
 	public List<CodeVO> getDeptList() throws Exception {
-		List<CodeVO> deptList = cmnService.getDeptList();
+		List<CodeVO> deptList = userService.getDeptList();
 		log.info("deptList   :   {}", deptList);
 		
 		return deptList;
@@ -73,7 +73,7 @@ public class CmnController {
 	// 사용자 직급 조회
 	@RequestMapping(value = "/CMN/rankList.do")
 	public List<CodeVO> getRankList() throws Exception {
-		List<CodeVO> rankList = cmnService.getRankList();
+		List<CodeVO> rankList = userService.getRankList();
 		log.info("rankList   :   {}", rankList);
 		
 		return rankList;
@@ -82,7 +82,7 @@ public class CmnController {
 	// 사용자 직책 조회
 	@RequestMapping(value = "/CMN/positionList.do")
 	public List<CodeVO> getPositionList() throws Exception {
-		List<CodeVO> positionList = cmnService.getPositionList();
+		List<CodeVO> positionList = userService.getPositionList();
 		log.info("positionList   :   {}", positionList);
 		
 		return positionList;
@@ -91,7 +91,7 @@ public class CmnController {
 	// 사용자 권한 조회
 	@RequestMapping(value = "/CMN/authorityList.do")
 	public List<CodeVO> getAuthorityList() throws Exception {
-		List<CodeVO> authorityList = cmnService.getAuthorityList();
+		List<CodeVO> authorityList = userService.getAuthorityList();
 		log.info("authorityList   :   {}", authorityList);
 		
 		return authorityList;
@@ -100,7 +100,7 @@ public class CmnController {
 	// 사용자 상태 조회
 	@RequestMapping(value = "/CMN/statusList.do")
 	public List<CodeVO> getStatusList() throws Exception {
-		List<CodeVO> statusList = cmnService.getStatusList();
+		List<CodeVO> statusList = userService.getStatusList();
 		log.info("statusList   :   {}", statusList);
 		
 		return statusList;
@@ -109,7 +109,7 @@ public class CmnController {
 	// 회사 정보 조회
 	@RequestMapping(value = "/CMN/companyInfo.do")
 	public List<CompanyVO> getCompanyInfo() throws Exception {
-		List<CompanyVO> companyInfo = cmnService.getCompanyInfo();
+		List<CompanyVO> companyInfo = userService.getCompanyInfo();
 		log.info("companyInfo   :   {}", companyInfo);
 		
 		return companyInfo;
@@ -120,7 +120,7 @@ public class CmnController {
 	public int idDupleCheck(@RequestParam("userId")String userId) throws Exception {
 		System.out.println("controller - 아이디 중복검사 진행!!");
 		log.info("userId  :  {}", userId);
-		int result = cmnService.idDupleCheck(userId);
+		int result = userService.idDupleCheck(userId);
 		log.info("result  :  {}", result);
 		
 		return result;
@@ -130,7 +130,7 @@ public class CmnController {
 	@RequestMapping(value = "/CMN/userReg.do")
 	public int userReg(UserVO user) throws Exception {
 		log.info("reg_user   :   {}", user);
-		int result = cmnService.userReg(user);
+		int result = userService.userReg(user);
 		log.info("reg-result   :   {}", result);
 		
 		return result;
@@ -140,7 +140,7 @@ public class CmnController {
 	@RequestMapping(value = "/CMN/userInfo.do")
 	public List<UserVO> getUserInfo(@RequestParam("userId")String userId) throws Exception {
 		log.info("userId   :   {}", userId);
-		List<UserVO> targetInfo = cmnService.getUserInfo(userId);
+		List<UserVO> targetInfo = userService.getUserInfo(userId);
 		log.info("targetInfo   :   {}", targetInfo);
 		
 		return targetInfo;
@@ -150,7 +150,7 @@ public class CmnController {
 	@RequestMapping(value = "/CMN/targetCodeInfo.do")
 	public List<UserVO> getTargetCodeInfo(@RequestParam("userId")String userId) throws Exception {
 		log.info("userId   :   {}", userId);
-		List<UserVO> targetInfo = cmnService.getTargetCodeInfo(userId);
+		List<UserVO> targetInfo = userService.getTargetCodeInfo(userId);
 		log.info("targetInfo   :   {}", targetInfo);
 		
 		return targetInfo;
@@ -160,7 +160,7 @@ public class CmnController {
 	@RequestMapping(value = "/CMN/userModify.do")
 	public int userModify(ModifyVO user) throws Exception {
 		log.info("modify_user   :   {}", user);
-		int result = cmnService.userModify(user);
+		int result = userService.userModify(user);
 		
 		return result;
 	}
@@ -169,7 +169,7 @@ public class CmnController {
 	@RequestMapping(value = "/CMN/userDelete.do")
 	public int userDelete(@RequestParam("userId")String userId) throws Exception {
 		log.info("delete_user   :   {}", userId);
-		int result = cmnService.userDelete(userId);
+		int result = userService.userDelete(userId);
 		
 		return result;
 	}
